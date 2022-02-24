@@ -6,16 +6,31 @@
             <img class="mb-4" src="{{ asset('assets/img/register.svg') }}" alt="" width="250" height="250">
             <h1 class="h3 mb-3 fw-normal">{{ $title }}</h1>
             <div class="form-floating mb-2">
-                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" placeholder="name@example.com">
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput" placeholder="name@example.com" required value="{{ old('email') }}">
                 <label for="floatingInput">Email address</label>
+                @error('email')
+                <div class="invalid-feedback">
+                   {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-floating mb-2">
-                <input type="text" name="username" class="form-control" id="floatingInput" placeholder="nama anda">
+                <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="floatingInput" placeholder="nama anda" required value="{{ old('username') }}">
                 <label for="floatingInput">Username</label>
+                @error('username')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-floating mb-2">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword">Password</label>
+                @error('password')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <button class="w-100 btn btn-lg btn-secondary" type="submit">Buat Akun</button>
             <div class="text-center mt-3">
