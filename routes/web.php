@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryControler;
+use App\Http\Controllers\DashboardControler;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-});
-
-Route::get('/category', function () {
-    return view('category');
-});
-
-Route::get('/book', function () {
-    return view('book');
-});
+Route::get('/', [DashboardControler::class, 'index' ]);
+Route::get('/category', [CategoryControler::class, 'index']);
+Route::get('/book', [BookController::class, 'index']);
