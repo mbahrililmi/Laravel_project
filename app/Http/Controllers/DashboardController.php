@@ -10,10 +10,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard', [
-            'title' => 'Dashboard',
-            'countCategory' => $category = Category::all(),
-            'countBook' => $book = Book::all()
-        ]);
+        if (Auth()->user()->role == 1) {
+            return view('dashboard', [
+                'title' => 'Dashboard',
+                'countCategory' => $category = Category::all(),
+                'countBook' => $book = Book::all()
+            ]);
+        }
+
+        if((Auth()->user()->role==0)){
+            return redirect('/book');
+        }
     }
 }

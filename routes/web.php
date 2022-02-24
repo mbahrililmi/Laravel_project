@@ -24,5 +24,12 @@ Route::post('/auth/store', [AuthController::class, 'store']);
 Route::post('/auth/logout', [AuthController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
 Route::get('/category', [CategoryController::class, 'index'])->middleware('auth');
+Route::get('/category/create', [CategoryController::class, 'create'])->middleware('auth');
+Route::post('/category/store', [CategoryController::class, 'store'])->middleware('auth');
+Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->middleware('auth');
+Route::put('/category/update/{category}', [CategoryController::class, 'update'])->middleware('auth');
+Route::delete('/category/delete/{category}', [CategoryController::class, 'delete'])->middleware('auth');
+
 Route::get('/book', [BookController::class, 'index'])->middleware('auth');

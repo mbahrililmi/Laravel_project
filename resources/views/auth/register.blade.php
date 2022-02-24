@@ -10,7 +10,7 @@
                 <label for="email">Email address</label>
                 @error('email')
                 <div class="invalid-feedback">
-                   {{$message}}
+                   {{ var_dump($message) }}
                 </div>
                 @enderror
             </div>

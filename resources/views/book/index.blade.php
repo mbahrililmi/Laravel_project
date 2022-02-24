@@ -7,6 +7,9 @@
         <i class="fas fa-table me-1"></i>
         DataTable Example
     </div>
+    <div class="d-flexjustify-content-end mt-3 text-end me-3">
+        <a href="" class="btn btn-info" style="width: 207px;">Tambah Data</a>
+    </div>
     <div class="card-body">
         <table id="datatablesSimple">
             <thead>
