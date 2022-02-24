@@ -6,7 +6,7 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class DashboardControler extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {

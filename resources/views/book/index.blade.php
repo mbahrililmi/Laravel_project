@@ -14,7 +14,7 @@
                     <th>Kategori Buku</th>
                     <th>Nama Buku</th>
                     <th>Stok Buku</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tfoot>
@@ -23,7 +23,7 @@
                     <th>Kategori Buku</th>
                     <th>Nama Buku</th>
                     <th>Stok Buku</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </tfoot>
             <tbody>
@@ -34,12 +34,14 @@
                     <td>{{ $book->nama_buku }}</td>
                     <td>{{ $book->stok_buku }}</td>
                     <td>
-                        <a href="/book/edit/{{ $book->id }}" class="btn btn-warning w-100 btn-sm mb-1" title="Edit"><i class="fas fa-fw fa-edit"></i></a>
-
-                        <form action="/book/delete" class="d-inline" method="post">
-                            <button onclick="return confirm('do you want to delete this data ?')" type="submit" class="btn w-100 btn-danger btn-sm mb-1" title="Hapus"><i class="fas fa-fw fa-trash"></i></button>
-                            <input type="hidden" name="id" value="{{ $book->id }}">
-                        </form>
+                        <div class="text-center">
+                            <a href="/book/edit/{{ $book->id }}" class="btn btn-warning btn-sm mb-1" title="Edit"><i class="fas fa-fw fa-edit"></i></a>
+                            
+                            <form action="/book/delete" class="d-inline" method="post">
+                                <button onclick="return confirm('do you want to delete this data ?')" type="submit" class="btn btn-danger btn-sm mb-1" title="Hapus"><i class="fas fa-fw fa-trash"></i></button>
+                                <input type="hidden" name="id" value="{{ $book->id }}">
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @endforeach

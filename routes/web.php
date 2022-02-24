@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\CategoryControler;
-use App\Http\Controllers\DashboardControler;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardControler::class, 'index' ]);
-Route::get('/category', [CategoryControler::class, 'index']);
+Route::get('/', [AuthController::class, 'index']);
+Route::get('/auth/register', [AuthController::class, 'register']);
+Route::post('/auth/store', [AuthController::class, 'store']);
+
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/book', [BookController::class, 'index']);

@@ -10,7 +10,7 @@ class BookController extends Controller
     {
         return view('book.index', [
             'title' => 'Buku',
-            'books' => $book = Book::all()
+            'books' => Book::with(['category'])->latest()->get()
         ]);
     }
 }
