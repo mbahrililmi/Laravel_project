@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthController::class, 'index'])->name('index');
-Route::get('/auth/register', [AuthController::class, 'register']);
+Route::get('/', [AuthController::class, 'index'])->middleware('guest')->name('login');
+Route::post('/auth', [AuthController::class, 'autentification']);
+Route::get('/auth/register', [AuthController::class, 'register'])->middleware('guest');
 Route::post('/auth/store', [AuthController::class, 'store']);
+Route::post('/auth/logout', [AuthController::class, 'logout']);
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
-Route::get('/category', [CategoryController::class, 'index']);
-Route::get('/book', [BookController::class, 'index']);
-
-
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/category', [CategoryController::class, 'index'])->middleware('auth');
+Route::get('/book', [BookController::class, 'index'])->middleware('auth');

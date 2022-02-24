@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -40,6 +41,38 @@ class AuthController extends Controller
         User::create($validatedData);
 
         $request->session()->flash('success', 'Registrasi Berhasil! Anda bisa login');
+        return redirect('/');
+    }
+
+    public function autentification(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email:dns',
+            'password' => 'required|min:5|max:255'
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            if (Auth()->user()->role == 1) {
+                $request->session()->regenerate();
+                return redirect()->intended('/dashboard');
+            }
+            if (Auth()->user()->role == 0) {
+                $request->session()->regenerate();
+                return redirect()->intended('/category');
+            }
+        }
+
+        return back()->with('loginError', 'Login Gagal Periksa email dan password');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('/');
     }
 }

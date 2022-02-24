@@ -1,6 +1,7 @@
 @extends('layout.main')
 @section('container')
 
+@if (Auth()->user()->role == 1)
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
@@ -49,5 +50,46 @@
         </table>
     </div>
 </div>
+@endif
+
+@if (Auth()->user()->role == 0)
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        DataTable Example
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Kategori Buku</th>
+                    <th>Nama Buku</th>
+                    <th>Stok Buku</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>No</th>
+                    <th>Kategori Buku</th>
+                    <th>Nama Buku</th>
+                    <th>Stok Buku</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach ($books as $index => $book)
+                <tr>
+                    <td>{{ ++$index }}</td>
+                    <td>{{ $book->category->nama_kategori }}</td>
+                    <td>{{ $book->nama_buku }}</td>
+                    <td>{{ $book->stok_buku }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+@endif
+
     
 @endsection

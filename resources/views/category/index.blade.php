@@ -1,7 +1,7 @@
 @extends('layout.main')
-
 @section('container')
     
+@if (Auth()->user()->role == 1)
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -44,5 +44,39 @@
             </table>
         </div>
     </div>
+@endif
+
+@if (Auth()->user()->role == 0)
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            DataTable Example
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th class="w-50">Name</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th class="w-50">Name</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach ($categorys as $index => $category)
+                    <tr>
+                        <td>{{ ++$index }}</td>
+                        <td>{{ $category->nama_kategori }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endif
   
 @endsection

@@ -2,7 +2,8 @@
 @section('containerforauth')
     <main class="form-signin">
         <div class="row">
-        <form>
+        <form action="/auth" method="post">
+            @csrf
             <img class="mb-4" src="{{ asset('assets/img/login.svg') }}" alt="" width="250" height="250">
             <h1 class="h3 mb-3 fw-normal">{{ $title }}</h1>
 
@@ -13,13 +14,30 @@
             </div>
             @endif
 
+            @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('loginError') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
             <div class="form-floating mb-2">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput">Email address</label>
+                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" autofocus required value="{{ old('email') }}">
+                <label for="email">Email address</label>
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-floating mb-2">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+                @error('password')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
             </div>
             <button class="w-100 btn btn-lg btn-secondary" type="submit">Masuk</button>
             <div class="text-center mt-3">
