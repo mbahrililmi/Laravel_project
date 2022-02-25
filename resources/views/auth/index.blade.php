@@ -7,6 +7,13 @@
             <img class="mb-4" src="{{ asset('assets/img/login.svg') }}" alt="" width="250" height="250">
             <h1 class="h3 mb-3 fw-normal">{{ $title }}</h1>
 
+            @if (session()->has('needToLogin'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ session('needToLogin') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
             @if (session()->has('success'))
             <div class="alert alert-info alert-dismissible fade show" role="alert">
                 {{ session('success') }}

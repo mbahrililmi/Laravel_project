@@ -11,11 +11,11 @@
                 @endif
                 
                 <div class="sb-sidenav-menu-heading">Menu</div>
-                <a class="nav-link" href="/category">
+                <a class="nav-link {{ ($title==='Kategori Buku')? 'active': '' }}" href="/category">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Kategori
                 </a>
-                <a class="nav-link" href="/book">
+                <a class="nav-link {{ ($title==='Buku')? 'active': '' }}" href="/book">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Buku
                 </a>

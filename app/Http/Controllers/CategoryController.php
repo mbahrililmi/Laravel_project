@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Book;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class CategoryController extends Controller
 {
@@ -15,6 +17,14 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function show(Category $category)
+    {
+        return view('category.show', [
+            'title' => 'Kategori Buku',
+            'categorys' => Category::with(['book'])->latest()->where('id', $category->id)->first()
+        ]);
+    }
+
     public function create()
     {
         if (Auth()->user()->role == 1) {
@@ -23,7 +33,7 @@ class CategoryController extends Controller
             ]);
         }
         if (Auth()->user()->role == 0) {
-            return view('category');
+            return view('/category');
         }
     }
 
@@ -40,7 +50,7 @@ class CategoryController extends Controller
             return redirect('/category');
         }
         if (Auth()->user()->role == 0) {
-            return view('category');
+            return view('/category');
         }
     }
 
@@ -53,7 +63,7 @@ class CategoryController extends Controller
             ]);
         }
         if (Auth()->user()->role == 0) {
-            return view('category');
+            return view('/category');
         }
     }
 
@@ -77,6 +87,19 @@ class CategoryController extends Controller
 
     public function delete(Category $category)
     {
+        // return $category->id; // 1
+        // return $book = Book::where('id', $category->id);
+        // return Book::get()->where('id', $category->category_id);
+        // $check = Category::with(['book'])->latest()->get()->where('id', $category->id);
+        // return $category = Category::with(['book'])->latest()->get();
+
+        $book = Book::all()->where('category_id', $category->id);
+
+        // jika buku masih ada maka tidak boleh dihapus
+        if (count($book) > 0) {
+            return redirect('/category')->with('danger', 'Hapus Data Gagal Kategori masih digunakan beberapa buku!');
+        };
+
         Category::destroy($category->id);
         return redirect('/category')->with('success', 'Hapus Data Berhasil!');
     }

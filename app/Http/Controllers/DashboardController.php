@@ -19,7 +19,7 @@ class DashboardController extends Controller
         }
 
         if((Auth()->user()->role==0)){
-            return redirect('/book');
+            return redirect('/category');
         }
     }
 }
