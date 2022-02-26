@@ -21,7 +21,7 @@
             DataTable Example
         </div>
         <div class="d-flexjustify-content-end mt-3 text-end me-3">
-            <a href="/category/create" class="btn btn-info" style="width: 207px;">Tambah Data</a>
+            <a href="{{ route('admin.category.create') }}" class="btn btn-info" style="width: 207px;">Tambah Data</a>
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
@@ -43,12 +43,12 @@
                     @foreach ($categorys as $index => $category)
                     <tr>
                         <td>{{ ++$index }}</td>
-                        <td><a href="/category/show/{{ $category->id }}" class="fw-bold" style="text-decoration: none">{{ $category->nama_kategori }}</a></td>
+                        <td><a href="{{ route('admin.category.show', ['category' => $category->id]) }}" class="fw-bold" style="text-decoration: none">{{ $category->nama_kategori }}</a></td>
                         <td>
                             <div class="text-center">
-                                <a href="/category/edit/{{ $category->id }}" class="btn btn-warning btn-sm mb-1" title="Edit"><i class="fas fa-fw fa-edit"></i></a>
+                                <a href="{{ route('admin.category.edit', ['category' => $category->id]) }}" class="btn btn-warning btn-sm mb-1" title="Edit"><i class="fas fa-fw fa-edit"></i></a>
                                 
-                                <form action="/category/delete/{{ $category->id }}" class="d-inline" method="post">
+                                <form action="{{ route('admin.category.delete', ['category' => $category->id]) }}" class="d-inline" method="post">
                                     @method('delete')
                                     @csrf
                                     <button onclick="return confirm('do you want to delete this data ?')" type="submit" class="btn btn-danger btn-sm mb-1" title="Hapus"><i class="fas fa-fw fa-trash"></i></button>
@@ -89,7 +89,7 @@
                     @foreach ($categorys as $index => $category)
                     <tr>
                         <td>{{ ++$index }}</td>
-                        <td><a href="/category/show/{{ $category->id }}" class="fw-bold" style="text-decoration: none">{{ $category->nama_kategori }}</a></td>
+                        <td><a href="{{ route('member.category.show', ['category' => $category->id]) }}" class="fw-bold" style="text-decoration: none">{{ $category->nama_kategori }}</a></td>
                     </tr>
                     @endforeach
                 </tbody>

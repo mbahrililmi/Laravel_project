@@ -1,7 +1,7 @@
 @extends('layout.auth')
 @section('containerforauth')
     <main class="form-signin">
-        <form action="/auth/store" method="post">
+        <form action="{{ route('store') }}" method="post">
             @csrf
             <img class="mb-4" src="{{ asset('assets/img/register.svg') }}" alt="" width="250" height="250">
             <h1 class="h3 mb-3 fw-normal">{{ $title }}</h1>
@@ -34,7 +34,7 @@
             </div>
             <button class="w-100 btn btn-lg btn-secondary" type="submit">Buat Akun</button>
             <div class="text-center mt-3">
-                <a class="small font-weight-bold fw-bold" href="/">Sudah Punya Password, Login!!</a>
+                <a class="small font-weight-bold fw-bold" href="{{ route('login') }}">Sudah Punya Password, Login!!</a>
             </div>
             <div class="text-center mt-3">
                 <a class="small font-weight-bold fw-bold" href="#">Lupa Password?</a>

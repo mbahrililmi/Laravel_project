@@ -8,7 +8,12 @@
         DataTable Example
     </div>
     <div class="d-flexjustify-content-end mt-3 text-end me-3">
-        <a href="/category" class="btn btn-info" style="width: 207px;">Kembali Data</a>
+        @if (Auth()->user()->role == 1)
+        <a href="{{ route('admin.category') }}" class="btn btn-info" style="width: 207px;">Kembali Data</a>
+        @endif
+        @if (Auth()->user()->role == 0)
+        <a href="{{ route('member.category') }}" class="btn btn-info" style="width: 207px;">Kembali Data</a>
+        @endif
     </div>
     <div class="card-body">
         <table id="datatablesSimple">

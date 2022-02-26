@@ -14,7 +14,7 @@
         DataTable Example
     </div>
     <div class="d-flexjustify-content-end mt-3 text-end me-3">
-        <a href="/book/create" class="btn btn-info" style="width: 207px;">Tambah Data</a>
+        <a href="{{ route('admin.book.create') }}" class="btn btn-info" style="width: 207px;">Tambah Data</a>
     </div>
     <div class="card-body">
         <table id="datatablesSimple">
@@ -45,9 +45,9 @@
                     <td>{{ $book->stok_buku }}</td>
                     <td>
                         <div class="text-center">
-                            <a href="/book/edit/{{ $book->id }}" class="btn btn-warning btn-sm mb-1" title="Edit"><i class="fas fa-fw fa-edit"></i></a>
+                            <a href="{{ route('admin.book.edit', ['book' => $book->id]) }}" class="btn btn-warning btn-sm mb-1" title="Edit"><i class="fas fa-fw fa-edit"></i></a>
                             
-                            <form action="/book/delete/{{ $book->id }}" class="d-inline" method="post">
+                            <form action="{{ route('admin.book.delete', ['book' => $book->id]) }}" class="d-inline" method="post">
                                 @method('delete')
                                 @csrf
                                 <button onclick="return confirm('do you want to delete this data ?')" type="submit" class="btn btn-danger btn-sm mb-1" title="Hapus"><i class="fas fa-fw fa-trash"></i></button>

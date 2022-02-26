@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-8 mb-4">
         <div class="bg-white shadow-sm rounded p-3" style="border-radius: 10px;">
-            <form action="/book/store" method="post">
+            <form action="{{ route('admin.book.store') }}" method="post">
                 @csrf
                 <table class="table table-borderless m-0">
                     <tr>
@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="text-right">
-                            <a href="/book" class="btn btn-warning btn-lg btn-sm mi-radius">Kembali</a>
+                            <a href="{{ route('admin.book') }}" class="btn btn-warning btn-lg btn-sm mi-radius">Kembali</a>
                             <button type="submit" class="btn btn-primary btn-lg btn-sm mi-radius">Tambah Data</button>
                         </td>
                     </tr>

@@ -25,7 +25,7 @@ class BookController extends Controller
             ]);
         }
         if (Auth()->user()->role == 0) {
-            return view('/book');
+            return view('book');
         }
     }
 
@@ -40,11 +40,11 @@ class BookController extends Controller
             ]);
 
             Book::create($validatedData);
-            $request->session()->flash('success', 'Tambah Data Berhasil!');
-            return redirect('/book');
+            // $request->session()->flash('success', 'Tambah Data Berhasil!');
+            return redirect()->route('admin.book')->with('success', 'Tambah Data Berhasil!');
         }
         if (Auth()->user()->role == 0) {
-            return view('/book');
+            return view('book');
         }
     }
 
@@ -58,7 +58,7 @@ class BookController extends Controller
             ]);
         }
         if (Auth()->user()->role == 0) {
-            return view('/book');
+            return view('book');
         }
     }
 
@@ -74,8 +74,8 @@ class BookController extends Controller
             Book::where('id', $book->id)
                 ->update($validatedData);
 
-            $request->session()->flash('success', 'Ubah Data Berhasil!');
-            return redirect('/book');
+            // $request->session()->flash('success', 'Ubah Data Berhasil!');
+            return redirect()->route('admin.book')->with('success', 'Ubah Data Berhasil!');
         }
         if (Auth()->user()->role == 0) {
             return view('book');
@@ -85,6 +85,6 @@ class BookController extends Controller
     public function delete(Book $book)
     {
         Book::destroy($book->id);
-        return redirect('/book')->with('success', 'Hapus Data Berhasil!');
+        return redirect()->route('admin.book')->with('success', 'Hapus Data Berhasil!');
     }
 }

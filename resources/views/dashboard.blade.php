@@ -27,7 +27,7 @@
                 <i class="fas fa-fw fa-bookmark fa-3x text-gray-300"></i>
               </div>
             </div>
-            <a href="/category" class="btn btn-secondary btn-sm mi-radius">Buka Halaman</a>
+            <a href="{{ route('admin.category') }}" class="btn btn-secondary btn-sm mi-radius">Buka Halaman</a>
           </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 <i class="fas fa-fw fa-book fa-3x text-gray-300"></i>
               </div>
             </div>
-            <a href="/book" class="btn btn-secondary btn-sm mi-radius">Buka Halaman</a>
+            <a href="{{ route('admin.book') }}" class="btn btn-secondary btn-sm mi-radius">Buka Halaman</a>
           </div>
         </div>
     </div>

@@ -2,10 +2,17 @@
 @section('containerforauth')
     <main class="form-signin">
         <div class="row">
-        <form action="/auth" method="post">
+        <form action="{{ route('autentification') }}" method="post">
             @csrf
             <img class="mb-4" src="{{ asset('assets/img/login.svg') }}" alt="" width="250" height="250">
             <h1 class="h3 mb-3 fw-normal">{{ $title }}</h1>
+            
+            @if (session()->has('logoutSuccess'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ session('logoutSuccess') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
 
             @if (session()->has('needToLogin'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -48,7 +55,7 @@
             </div>
             <button class="w-100 btn btn-lg btn-secondary" type="submit">Masuk</button>
             <div class="text-center mt-3">
-                <a class="small font-weight-bold fw-bold" href="/auth/register">Buat Akun</a>
+                <a class="small font-weight-bold fw-bold" href="{{ route('register') }}">Buat Akun</a>
             </div>
             <div class="text-center mt-3">
                 <a class="small font-weight-bold fw-bold" href="#">Lupa Password?</a>

@@ -33,7 +33,7 @@ class CategoryController extends Controller
             ]);
         }
         if (Auth()->user()->role == 0) {
-            return view('/category');
+            return view('category');
         }
     }
 
@@ -46,11 +46,11 @@ class CategoryController extends Controller
             ]);
 
             Category::create($validatedData);
-            $request->session()->flash('success', 'Tambah Data Berhasil!');
-            return redirect('/category');
+            // $request->session()->flash('success', 'Tambah Data Berhasil!');
+            return redirect()->route('admin.category')->with('success', 'Tambah Data Berhasil!');
         }
         if (Auth()->user()->role == 0) {
-            return view('/category');
+            return view('category');
         }
     }
 
@@ -63,7 +63,7 @@ class CategoryController extends Controller
             ]);
         }
         if (Auth()->user()->role == 0) {
-            return view('/category');
+            return view('category');
         }
     }
 
@@ -77,8 +77,8 @@ class CategoryController extends Controller
             Category::where('id', $category->id)
                 ->update($validatedData);
 
-            $request->session()->flash('success', 'Ubah Data Berhasil!');
-            return redirect('/category');
+            // $request->session()->flash('success', 'Ubah Data Berhasil!');
+            return redirect()->route('admin.category')->with('success', 'Ubah Data Berhasil!');
         }
         if (Auth()->user()->role == 0) {
             return view('category');
@@ -97,10 +97,10 @@ class CategoryController extends Controller
 
         // jika buku masih ada maka tidak boleh dihapus
         if (count($book) > 0) {
-            return redirect('/category')->with('danger', 'Hapus Data Gagal Kategori masih digunakan beberapa buku!');
+            return redirect()->route('admin.category')->with('danger', 'Hapus Data Gagal Kategori masih digunakan beberapa buku!');
         };
 
         Category::destroy($category->id);
-        return redirect('/category')->with('success', 'Hapus Data Berhasil!');
+        return redirect()->route('admin.category')->with('success', 'Hapus Data Berhasil!');
     }
 }

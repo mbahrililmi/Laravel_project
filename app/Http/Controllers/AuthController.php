@@ -41,7 +41,7 @@ class AuthController extends Controller
         User::create($validatedData);
 
         $request->session()->flash('success', 'Registrasi Berhasil! Anda bisa login');
-        return redirect('/');
+        return redirect()->route('login');
     }
 
     public function autentification(Request $request)
@@ -54,11 +54,11 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             if (Auth()->user()->role == 1) {
                 $request->session()->regenerate();
-                return redirect()->intended('/dashboard');
+                return redirect()->route('admin');
             }
             if (Auth()->user()->role == 0) {
                 $request->session()->regenerate();
-                return redirect()->intended('/category');
+                return redirect()->route('member.category');
             }
         }
 
@@ -73,6 +73,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('login')->with('logoutSuccess', 'Logout berhasil, Terimakasih');
     }
 }

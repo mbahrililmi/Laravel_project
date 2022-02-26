@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-8 mb-4">
         <div class="bg-white shadow-sm rounded p-3" style="border-radius: 10px;">
-            <form action="/category/update/{{ $category->id }}" method="post">
+            <form action="{{ route('admin.category.update', ['category' => $category->id]) }}" method="post">
                 @method('put')
                 @csrf
                 <table class="table table-borderless m-0">
@@ -21,7 +21,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="text-right">
-                            <a href="/category" class="btn btn-warning btn-lg btn-sm mi-radius">Kembali</a>
+                            <a href="{{ route('admin.category') }}" class="btn btn-warning btn-lg btn-sm mi-radius">Kembali</a>
                             <button type="submit" class="btn btn-primary btn-lg btn-sm mi-radius">Ubah Data</button>
                         </td>
                     </tr>

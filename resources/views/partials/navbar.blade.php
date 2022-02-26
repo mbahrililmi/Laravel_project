@@ -11,10 +11,10 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 @if (Auth()->user()->role==1)
-                <li><a class="dropdown-item" href="/dahsboard">Dashboard</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin') }}">Dashboard</a></li>
                 @endif
                 <li>
-                    <form action="/auth/logout" method="post">
+                    <form action="{{ route('logout') }}" method="get">
                         @csrf
                         <button type="submit" class="dropdown-item">Logout</button>
                     </form>
